@@ -180,8 +180,7 @@ module Elasticsearch
           cluster_name = arguments[:as] ||  ENV['TEST_CLUSTER_NAME'] || 'elasticsearch_test'
 
           if cluster_health = Timeout::timeout(0.25) { __get_cluster_health(port) } rescue nil
-            return cluster_health['cluster_name']    == cluster_name && \
-                   cluster_health['number_of_nodes'] == @@number_of_nodes
+            return cluster_health['cluster_name']    == cluster_name
           end
           return false
         end
